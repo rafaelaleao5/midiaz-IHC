@@ -1,15 +1,8 @@
 "use client"
 
-import { createContext, useContext, useState, type ReactNode } from "react"
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
-
-interface User {
-  id: string
-  name: string
-  email: string
-  avatar: string
-  type: "consumer" | "photographer" | "admin"
-}
+import { AuthService, User } from "@/lib/auth-service"
 
 interface CartItem {
   id: string
@@ -395,6 +388,22 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const router = useRouter()
 
+  // Verificar autenticação ao carregar
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const currentUser = await AuthService.getCurrentUser()
+        if (currentUser) {
+          setUser(currentUser)
+        }
+      } catch (error) {
+        console.error("Erro ao verificar autenticação:", error)
+      }
+    }
+
+    checkAuth()
+  }, [])
+
   const addToCart = (item: Omit<CartItem, "id">) => {
     const newItem: CartItem = {
       ...item,
@@ -414,45 +423,29 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Mock login logic
-    if (email === "admin@midiaz.com") {
-      setUser({
-        id: "admin-1",
-        name: "Admin Midiaz",
-        email: "admin@midiaz.com",
-        avatar: "/placeholder.svg?height=80&width=80",
-        type: "admin",
-      })
+    try {
+      const response = await AuthService.login(email, password)
+      setUser(response.user)
+      
+      // Redirecionar baseado no tipo de usuário
+      if (response.user.type === "admin") {
       router.push("/admin/dashboard")
-      return true
-    } else if (email === "fotografo@midiaz.com") {
-      setUser({
-        id: "photographer-1",
-        name: "João Silva",
-        email: "fotografo@midiaz.com",
-        avatar: "/placeholder.svg?height=80&width=80",
-        type: "photographer",
-      })
+      } else if (response.user.type === "photographer") {
       router.push("/photographer/dashboard")
-      return true
-    } else if (email && password) {
-      setUser({
-        id: "user-1",
-        name: "Maria Silva",
-        email: email,
-        avatar: "/placeholder.svg?height=80&width=80",
-        type: "consumer",
-      })
+      } else {
       router.push("/")
+      }
+      
+      showToast("Login realizado com sucesso", "success")
       return true
+    } catch (error) {
+      showToast(error instanceof Error ? error.message : "Erro no login", "error")
+      return false
     }
-    return false
   }
 
   const logout = () => {
+    AuthService.logout()
     setUser(null)
     clearCart()
     router.push("/")
