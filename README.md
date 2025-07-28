@@ -160,8 +160,8 @@ python3 check_uploads.py
 
 ## 🤝 Contribuição
 
-1. Faça um fork do projeto
+1. Clone o repositório
 2. Crie uma branch para sua feature
 3. Commit suas mudanças
 4. Push para a branch
-5. Abra um Pull Request 
+5. Abra um Pull Request para a develop
