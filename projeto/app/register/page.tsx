@@ -12,6 +12,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useFaceRecognition } from "@/lib/face-recognition-service"
+import { AuthService } from "@/lib/auth-service"
+import { useApp } from "@/contexts/AppContext"
 
 export default function RegisterPage() {
   const [currentStep, setCurrentStep] = useState(1)
@@ -20,6 +22,8 @@ export default function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    cpf: "",
+    phone: "",
     userType: "consumer",
   })
   const [showPassword, setShowPassword] = useState(false)
@@ -30,6 +34,7 @@ export default function RegisterPage() {
 
   const router = useRouter()
   const { registerUserFace } = useFaceRecognition()
+  const { showToast } = useApp()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -48,16 +53,51 @@ export default function RegisterPage() {
       return
     }
 
-    // Simulate registration
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    if (formData.userType === "consumer" && !facePhoto) {
-      setCurrentStep(2) // Go to face recognition step
-    } else {
-      // Redirect to login
-      router.push("/login")
+    // Validar CPF (formato básico)
+    const cpfClean = formData.cpf.replace(/\D/g, '')
+    if (cpfClean.length !== 11) {
+      setError("CPF deve ter 11 dígitos")
+      setIsLoading(false)
+      return
     }
-    setIsLoading(false)
+
+    // Validar telefone (formato básico)
+    const phoneClean = formData.phone.replace(/\D/g, '')
+    if (phoneClean.length < 10 || phoneClean.length > 11) {
+      setError("Telefone deve ter 10 ou 11 dígitos")
+      setIsLoading(false)
+      return
+    }
+
+    try {
+      // Registrar usuário usando AuthService
+      const userData = {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        user_type: formData.userType as "consumer" | "photographer" | "admin",
+        cpf: formData.cpf,
+        phone: formData.phone,
+      }
+
+      const response = await AuthService.register(userData)
+      
+      // Salvar dados do usuário para uso posterior
+      localStorage.setItem('temp_user_id', response.user.id)
+      localStorage.setItem('temp_user_data', JSON.stringify(response.user))
+
+      if (formData.userType === "consumer") {
+        setCurrentStep(2) // Ir para etapa de reconhecimento facial
+      } else {
+        // Para fotógrafos e admins, ir direto para login
+        showToast("Conta criada com sucesso!", "success")
+        router.push("/login")
+      }
+    } catch (error) {
+      setError(error instanceof Error ? error.message : "Erro ao criar conta")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleFacePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,15 +113,20 @@ export default function RegisterPage() {
     setError("")
     
     try {
-      // Gerar um ID único para o usuário (em produção, viria do backend de autenticação)
-      const userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+      // Pegar o ID do usuário salvo temporariamente
+      const userId = localStorage.getItem('temp_user_id')
+      if (!userId) {
+        throw new Error("Dados do usuário não encontrados")
+      }
       
       // Registrar o rosto usando a API Python
-      const result = await registerUserFace(userId, facePhoto)
+      const result = await registerUserFace("", facePhoto)
       
       if (result.success) {
-        // Salvar o userId no localStorage ou contexto
-        localStorage.setItem('userId', userId)
+        showToast("Foto registrada com sucesso!", "success")
+        // Limpar dados temporários
+        localStorage.removeItem('temp_user_id')
+        localStorage.removeItem('temp_user_data')
         router.push("/login")
       } else {
         setError("Erro ao processar foto. Tente novamente.")
@@ -95,11 +140,30 @@ export default function RegisterPage() {
   }
 
   const skipFaceRegistration = () => {
+    // Limpar dados temporários
+    localStorage.removeItem('temp_user_id')
+    localStorage.removeItem('temp_user_data')
     router.push("/login")
   }
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+  }
+
+  // Função para formatar CPF
+  const formatCPF = (value: string) => {
+    const cpf = value.replace(/\D/g, '')
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+  }
+
+  // Função para formatar telefone
+  const formatPhone = (value: string) => {
+    const phone = value.replace(/\D/g, '')
+    if (phone.length <= 10) {
+      return phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
+    } else {
+      return phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+    }
   }
 
   if (currentStep === 2) {
@@ -301,6 +365,34 @@ export default function RegisterPage() {
                     onChange={(e) => handleInputChange("email", e.target.value)}
                     placeholder="seu@email.com"
                     className="mt-1"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="cpf">CPF</Label>
+                  <Input
+                    id="cpf"
+                    type="text"
+                    value={formData.cpf}
+                    onChange={(e) => handleInputChange("cpf", formatCPF(e.target.value))}
+                    placeholder="000.000.000-00"
+                    className="mt-1"
+                    maxLength={14}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="phone">Telefone</Label>
+                  <Input
+                    id="phone"
+                    type="text"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", formatPhone(e.target.value))}
+                    placeholder="(00) 00000-0000"
+                    className="mt-1"
+                    maxLength={15}
                     required
                   />
                 </div>
