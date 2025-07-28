@@ -1,4 +1,4 @@
-# Midiaz - Plataforma de Reconhecimento Facial
+# Midiaz - Plataforma de Venda de Fotos
 
 Plataforma web para venda e descoberta de fotos profissionais em eventos
 
