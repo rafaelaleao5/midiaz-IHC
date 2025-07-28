@@ -1,6 +1,6 @@
 # Midiaz - Plataforma de Reconhecimento Facial
 
-Plataforma web para cadastro de usuários, upload de fotos e reconhecimento facial.
+Plataforma web para venda e descoberta de fotos profissionais em eventos
 
 ## 🚀 Tecnologias
 
