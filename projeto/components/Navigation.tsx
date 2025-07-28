@@ -29,9 +29,9 @@ export function Navigation() {
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">OC</span>
+                <span className="text-white font-bold text-sm">MZ</span>
               </div>
-              <span className="text-xl font-bold text-white italic">OnClick</span>
+              <span className="text-xl font-bold text-white italic">Midiaz</span>
             </Link>
 
             {/* Links de Navegação - Desktop */}

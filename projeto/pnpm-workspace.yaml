@@ -1,2 +1,3 @@
+name: midiaz-workspace
 onlyBuiltDependencies:
   - sharp

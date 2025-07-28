@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script para testar a integração entre o frontend Next.js e o backend Python
+Script para testar a integração entre o frontend Midiaz Next.js e o backend Python
 """
 
 import requests
@@ -8,7 +8,7 @@ import os
 from PIL import Image
 
 # Configurações
-API_BASE_URL = "http://localhost:8000"
+API_BASE_URL = "http://localhost:8001"
 TEST_USER_ID = "test_user_123"
 TEST_EVENT_ID = "test_event_456"
 
@@ -34,7 +34,7 @@ def test_api_health():
             print(f"❌ API retornou status {response.status_code}")
             return False
     except requests.exceptions.ConnectionError:
-        print("❌ Não foi possível conectar à API. Verifique se ela está rodando em http://localhost:8000")
+        print("❌ Não foi possível conectar à API. Verifique se ela está rodando em http://localhost:8001")
         return False
 
 def test_register_face():

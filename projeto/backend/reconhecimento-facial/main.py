@@ -12,7 +12,7 @@ import json
 from datetime import datetime
 import uuid
 
-app = FastAPI(title="Face Recognition API", version="1.0.0")
+app = FastAPI(title="Midiaz Face Recognition API", version="1.0.0")
 
 # Configurar CORS para permitir comunicação com o frontend Next.js
 app.add_middleware(
@@ -24,8 +24,8 @@ app.add_middleware(
 )
 
 # Diretório para armazenar fotos de referência dos usuários
-UPLOAD_DIR = "uploads"
-REFERENCE_DIR = "reference_faces"
+UPLOAD_DIR = "midiaz_uploads"
+REFERENCE_DIR = "midiaz_reference_faces"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(REFERENCE_DIR, exist_ok=True)
 

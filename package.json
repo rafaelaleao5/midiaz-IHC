@@ -1,4 +1,5 @@
 {
+  "name": "midiaz-workspace",
   "dependencies": {
     "framer-motion": "^12.23.6"
   }

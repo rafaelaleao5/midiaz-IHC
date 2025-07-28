@@ -418,21 +418,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
 
     // Mock login logic
-    if (email === "admin@onclick.com") {
+    if (email === "admin@midiaz.com") {
       setUser({
         id: "admin-1",
         name: "Admin Midiaz",
-        email: "admin@onclick.com",
+        email: "admin@midiaz.com",
         avatar: "/placeholder.svg?height=80&width=80",
         type: "admin",
       })
       router.push("/admin/dashboard")
       return true
-    } else if (email === "fotografo@onclick.com") {
+    } else if (email === "fotografo@midiaz.com") {
       setUser({
         id: "photographer-1",
         name: "João Silva",
-        email: "fotografo@onclick.com",
+        email: "fotografo@midiaz.com",
         avatar: "/placeholder.svg?height=80&width=80",
         type: "photographer",
       })

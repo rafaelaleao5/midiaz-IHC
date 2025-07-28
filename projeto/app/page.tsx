@@ -215,7 +215,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 italic">
-              Por que escolher a <span className="text-purple-600">OnClick</span>?
+              Por que escolher a <span className="text-purple-600">Midiaz</span>?
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               A plataforma mais avançada para encontrar e comprar suas fotos profissionais
@@ -271,9 +271,9 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-6 h-6 bg-gradient-to-br from-purple-600 to-purple-800 rounded flex items-center justify-center">
-              <span className="text-white font-bold text-xs">OC</span>
+              <span className="text-white font-bold text-xs">MZ</span>
             </div>
-            <span className="font-bold italic">OnClick</span>
+            <span className="font-bold italic">Midiaz</span>
           </div>
           <p className="text-sm text-gray-400 mb-4">
             Plataforma inteligente de descoberta e venda de fotos profissionais

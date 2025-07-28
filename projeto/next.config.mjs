@@ -18,6 +18,10 @@ const nextConfig = {
   // Force refresh
   experimental: {
     forceSwcTransforms: true,
+  },
+  // Project name
+  env: {
+    PROJECT_NAME: 'midiaz'
   }
 }
 

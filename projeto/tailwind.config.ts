@@ -10,6 +10,14 @@ const config: Config = {
     "*.{js,ts,jsx,tsx,mdx}",
   ],
   prefix: "",
+  // Project name
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
+  },
   theme: {
     container: {
       center: true,

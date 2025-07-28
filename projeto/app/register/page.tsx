@@ -233,9 +233,9 @@ export default function RegisterPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold text-xl">OnClick</span>
+              <span className="text-white font-bold text-xl">Midiaz</span>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 italic">Junte-se à OnClick!</h2>
+            <h2 className="text-2xl font-bold text-gray-900 italic">Junte-se à Midiaz!</h2>
             <p className="text-gray-600 mt-2">Crie sua conta e comece a descobrir suas memórias</p>
           </div>
 

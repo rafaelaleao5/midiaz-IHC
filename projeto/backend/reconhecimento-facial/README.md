@@ -1,6 +1,6 @@
 # Sistema de Reconhecimento Facial - Backend Python
 
-Este é o backend Python que fornece APIs para reconhecimento facial integrado à aplicação Next.js.
+Este é o backend Python que fornece APIs para reconhecimento facial integrado à aplicação Midiaz Next.js.
 
 ## 🚀 Funcionalidades
 
@@ -68,11 +68,11 @@ source venv/bin/activate
 python main.py
 ```
 
-A API estará disponível em: **http://localhost:8000**
+A API estará disponível em: **http://localhost:8001**
 
 ## 📖 Documentação da API
 
-Acesse a documentação interativa em: **http://localhost:8000/docs**
+Acesse a documentação interativa em: **http://localhost:8001/docs**
 
 ### Endpoints Principais
 

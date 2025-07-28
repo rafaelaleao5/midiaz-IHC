@@ -1,4 +1,4 @@
-# Projetao
+# Midiaz
 
 ## Como rodar o projeto
 
@@ -22,7 +22,7 @@ pnpm dev
 ### 3. **Acessar a aplicação**
 Após executar o comando acima, a aplicação estará disponível em:
 ```
-http://localhost:3000
+http://localhost:3001
 ```
 
 ## Scripts disponíveis
@@ -43,7 +43,7 @@ pnpm install
 # 2. Rodar em desenvolvimento
 pnpm dev
 
-# 3. Acessar http://localhost:3000
+# 3. Acessar http://localhost:3001
 ```
 
 ## Sobre o projeto

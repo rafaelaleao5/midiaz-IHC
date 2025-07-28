@@ -57,7 +57,7 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold text-xl">onClick</span>
+              <span className="text-white font-bold text-xl">Midiaz</span>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 italic">Bem-vindo de volta!</h2>
             <p className="text-gray-600 mt-2">Entre na sua conta para continuar</p>
@@ -74,10 +74,10 @@ export default function LoginPage() {
                   <strong>Consumidor:</strong> qualquer@email.com / senha123
                 </p>
                 <p>
-                  <strong>Fotógrafo:</strong> fotografo@onclick.com / senha123
+                  <strong>Fotógrafo:</strong> fotografo@midiaz.com / senha123
                 </p>
                 <p>
-                  <strong>Admin:</strong> admin@onclick.com / senha123
+                  <strong>Admin:</strong> admin@midiaz.com / senha123
                 </p>
               </div>
             </CardContent>
