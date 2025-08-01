@@ -65,7 +65,8 @@ pip3 install -r requirements_simple.txt
 
 ### 4. Inicialize o banco de dados
 ```bash
-python3 init_db.py
+python3 init_db.py (Linux)
+python init_db.py (Windows)
 ```
 
 ## 🚀 Executando o Projeto
@@ -73,7 +74,8 @@ python3 init_db.py
 ### 1. Inicie o Backend (Terminal 1)
 ```bash
 cd projeto/backend/reconhecimento-facial
-python3 main_simple.py
+python3 main_simple.py (Linux)
+python3 main_simple.py (Windows)
 ```
 O backend estará disponível em: http://localhost:8000
 
