@@ -75,7 +75,7 @@ python init_db.py (Windows)
 ```bash
 cd projeto/backend/reconhecimento-facial
 python3 main_simple.py (Linux)
-python3 main_simple.py (Windows)
+python main_simple.py (Windows)
 ```
 O backend estará disponível em: http://localhost:8000
 
@@ -118,17 +118,20 @@ O frontend estará disponível em: http://localhost:3000
 ### Teste de Upload de Fotos
 ```bash
 cd projeto/backend/reconhecimento-facial
-python3 test_photo_upload.py
+python3 test_photo_upload.py (Linux)
+python test_photo_upload.py (Windows)
 ```
 
 ### Visualizar Banco de Dados
 ```bash
-python3 view_database.py
+python3 view_database.py (Linux)
+python view_database.py (Windows)
 ```
 
 ### Verificar Uploads
 ```bash
-python3 check_uploads.py
+python3 check_uploads.py (Linux)
+python check_uploads.py (Windows)
 ```
 
 ## 📊 Dados de Teste
