@@ -105,7 +105,7 @@ export default function AccountPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-white pb-16 md:pb-0 pt-16">
       <Navigation />
 
       {/* Header */}
@@ -312,11 +312,10 @@ export default function AccountPage() {
                     {badges.map((badge) => (
                       <div
                         key={badge.id}
-                        className={`p-4 rounded-lg border text-center ${
-                          badge.earned
+                        className={`p-4 rounded-lg border text-center ${badge.earned
                             ? "bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200"
                             : "bg-gray-50 border-gray-200"
-                        }`}
+                          }`}
                       >
                         <div className={`text-2xl mb-2 ${!badge.earned ? "grayscale opacity-50" : ""}`}>
                           {badge.icon}

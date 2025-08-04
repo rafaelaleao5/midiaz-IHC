@@ -86,11 +86,11 @@ export default function SearchPage() {
     }
 
     setIsSearching(true)
-    
+
     try {
       // Buscar fotos do usuário usando a API de reconhecimento facial
       const result = await findUserPhotos(user.id, eventId)
-      
+
       if (result.success && result.photos_found > 0) {
         // Converter resultados da API para o formato esperado pelo frontend
         const foundPhotos = result.photos.map((photo, index) => ({
@@ -105,7 +105,7 @@ export default function SearchPage() {
           number: Math.random() > 0.8 ? Math.floor(Math.random() * 99) + 1 : undefined,
           tags: ["Esporte", "Ação", "Momento", "Emoção"].slice(0, Math.floor(Math.random() * 4) + 1),
         }))
-        
+
         setFoundPhotos(foundPhotos)
         showToast(`Encontramos ${result.photos_found} fotos com você!`, "success")
         router.push("/found-photos")
@@ -113,7 +113,7 @@ export default function SearchPage() {
         // Se não encontrou fotos reais, usar simulação
         const eventPhotos = photos.filter((photo) => photo.eventId === eventId && photo.hasUser)
         setFoundPhotos(eventPhotos)
-        
+
         if (eventPhotos.length > 0) {
           showToast(`Encontramos ${eventPhotos.length} fotos com você!`, "success")
         } else {
@@ -124,7 +124,7 @@ export default function SearchPage() {
     } catch (error) {
       console.error('Erro ao buscar fotos:', error)
       showToast("Erro ao buscar fotos. Tente novamente.", "error")
-      
+
       // Fallback para simulação
       const eventPhotos = photos.filter((photo) => photo.eventId === eventId && photo.hasUser)
       setFoundPhotos(eventPhotos)
@@ -144,7 +144,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-white pb-16 md:pb-0 pt-16">
       <Navigation />
 
       {/* Search Header */}
@@ -174,13 +174,12 @@ export default function SearchPage() {
 
           {/* API Status Indicator */}
           <div className="mt-2 flex items-center space-x-2">
-            <div className={`w-2 h-2 rounded-full ${
-              apiStatus === "available" ? "bg-green-500" : 
-              apiStatus === "unavailable" ? "bg-red-500" : "bg-yellow-500"
-            }`}></div>
+            <div className={`w-2 h-2 rounded-full ${apiStatus === "available" ? "bg-green-500" :
+                apiStatus === "unavailable" ? "bg-red-500" : "bg-yellow-500"
+              }`}></div>
             <span className="text-xs text-gray-600">
-              {apiStatus === "available" ? "IA disponível" : 
-               apiStatus === "unavailable" ? "IA indisponível" : "Verificando IA..."}
+              {apiStatus === "available" ? "IA disponível" :
+                apiStatus === "unavailable" ? "IA indisponível" : "Verificando IA..."}
             </span>
           </div>
 
@@ -358,7 +357,7 @@ export default function SearchPage() {
           className="fixed bottom-20 right-4 bg-purple-600 hover:brightness-90 active:scale-95 transition-transform hover:scale-105 text-white p-3 rounded-full shadow-lg transition-all"
           aria-label="Voltar ao topo"
         >
-        <ArrowUp size={20}/>
+          <ArrowUp size={20} />
         </button>
       )}
       <BottomNavigationBar />

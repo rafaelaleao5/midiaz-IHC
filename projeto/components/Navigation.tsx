@@ -1,29 +1,50 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ShoppingCart, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { useApp } from "@/contexts/AppContext"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import Image from "next/image" // Import Image for profile picture
+import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isDarkBackground, setIsDarkBackground] = useState(true)
   const { user, cart, logout } = useApp()
   const router = useRouter()
+  const pathname = usePathname()
+
+  // Detectar se estamos em uma página com fundo escuro
+  useEffect(() => {
+    const checkBackground = () => {
+      // Páginas com fundo escuro (roxo)
+      const darkPages = ['/', '/search', '/event']
+      const isDarkPage = darkPages.some(page => pathname.startsWith(page))
+      setIsDarkBackground(isDarkPage)
+    }
+
+    checkBackground()
+  }, [pathname])
 
   const handleNavigation = (path: string) => {
     router.push(path)
     setIsMenuOpen(false)
   }
 
+  // Classes condicionais baseadas no fundo
+  const textColor = isDarkBackground ? 'text-white' : 'text-gray-900'
+  const textHoverColor = isDarkBackground ? 'hover:text-white' : 'hover:text-purple-600'
+  const textOpacity = isDarkBackground ? 'text-white/90' : 'text-gray-700'
+  const buttonBorder = isDarkBackground ? 'border-white/30' : 'border-gray-300'
+  const buttonHover = isDarkBackground ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+  const buttonGhostHover = isDarkBackground ? 'hover:bg-white/10' : 'hover:bg-gray-100'
+
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {" "}
-        {/* Adjusted padding for consistency */}
         <div className="flex items-center justify-between py-4">
           {/* Logo e Links de Navegação */}
           <div className="flex items-center space-x-8">
@@ -31,26 +52,26 @@ export function Navigation() {
               <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">MZ</span>
               </div>
-              <span className="text-xl font-bold text-white italic">Midiaz</span>
+              <span className="text-xl font-bold text-gray-900 italic">Midiaz</span>
             </Link>
 
             {/* Links de Navegação - Desktop */}
             <div className="hidden lg:flex items-center space-x-6">
               <button
                 onClick={() => handleNavigation("/search")}
-                className="text-white/90 hover:text-white font-medium transition-colors"
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
               >
                 Buscar fotos
               </button>
               <button
                 onClick={() => handleNavigation("/para-fotografos")}
-                className="text-white/90 hover:text-white font-medium transition-colors"
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
               >
                 Vender fotos
               </button>
               <button
                 onClick={() => handleNavigation("/como-funciona")}
-                className="flex items-center space-x-1 text-white/90 hover:text-white font-medium transition-colors"
+                className="flex items-center space-x-1 text-gray-700 hover:text-purple-600 font-medium transition-colors"
               >
                 <span>Como funciona</span>
               </button>
@@ -64,7 +85,7 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="p-2 relative text-white hover:bg-white/10"
+                className="p-2 relative text-gray-700 hover:bg-gray-100"
                 onClick={() => handleNavigation("/cart")}
               >
                 <ShoppingCart size={20} />
@@ -99,13 +120,13 @@ export function Navigation() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleNavigation("/login")}
-                    className="border-white/30 text-white hover:bg-white/10 bg-transparent px-3 py-1.5 h-auto text-xs" // Smaller buttons for mobile header
+                    className="border-gray-300 text-gray-700 hover:bg-gray-100 bg-transparent px-3 py-1.5 h-auto text-xs"
                   >
                     Entrar
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 h-auto text-xs" // Smaller buttons for mobile header
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1.5 h-auto text-xs"
                     onClick={() => handleNavigation("/register")}
                   >
                     Criar conta
@@ -118,19 +139,19 @@ export function Navigation() {
             <div className="hidden md:flex items-center space-x-3">
               {user ? (
                 <div className="flex items-center space-x-3">
-                  <span className="text-white/90 text-sm">Olá, {user.name.split(" ")[0]}</span>
+                  <span className="text-gray-700 text-sm">Olá, {user.name.split(" ")[0]}</span>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={logout}
-                    className="border-white/30 text-white hover:bg-white/10 bg-transparent"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-100 bg-transparent"
                   >
                     Sair
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="p-2 text-white hover:bg-white/10"
+                    className="p-2 text-gray-700 hover:bg-gray-100"
                     onClick={() => handleNavigation("/account")}
                   >
                     <User size={20} />
@@ -142,7 +163,7 @@ export function Navigation() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleNavigation("/login")}
-                    className="border-white/30 text-white hover:bg-white/10 bg-transparent"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-100 bg-transparent"
                   >
                     Entrar
                   </Button>
@@ -159,8 +180,6 @@ export function Navigation() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu (removed as it's replaced by BottomNavigationBar) */}
     </header>
   )
 }

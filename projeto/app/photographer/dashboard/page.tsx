@@ -68,16 +68,16 @@ const mockTopPhotos = [
     sales: 45,
     views: 1200,
     revenue: 225.00,
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150&h=100&fit=crop"
+    image: "https://linhadechegada.blogfolha.uol.com.br/files/2019/10/000000000000000-768x536.jpg"
   },
   {
     id: 2,
-    title: "Celebração da vitória",
+    title: "Pódio",
     event: "Maratona Internacional SP",
     sales: 38,
     views: 980,
     revenue: 190.00,
-    image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=150&h=100&fit=crop"
+    image: "https://api.ootimista.com.br/wp-content/uploads/2024/08/sifa-hassan-ouro-maratona-paris-2024.jpg"
   },
   {
     id: 3,
@@ -86,7 +86,7 @@ const mockTopPhotos = [
     sales: 32,
     views: 850,
     revenue: 160.00,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=150&h=100&fit=crop"
+    image: "https://s3.glbimg.com/v1/AUTH_35862ca5c6ab48b992baf1f1b4f7062e/extra-globo-com/incoming/25655547-e96-d7d/w640h360-PROP/formatura.jpg"
   },
   {
     id: 4,
@@ -95,11 +95,11 @@ const mockTopPhotos = [
     sales: 28,
     views: 720,
     revenue: 140.00,
-    image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=150&h=100&fit=crop"
+    image: "https://www.hellomoto.com.br/wp-content/uploads/2022/09/MF-4655_Header.jpg"
   },
   {
     id: 5,
-    title: "Primeiro beijo",
+    title: "Indo ao altar",
     event: "Casamento Marina & Rafael",
     sales: 25,
     views: 680,
@@ -285,7 +285,7 @@ function DashboardContent({ selectedEvent }: { selectedEvent: string }) {
   const recentSales = [
     {
       id: 1,
-      photoUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150&h=100&fit=crop",
+      photoUrl: "https://marketplace.canva.com/yGfCQ/MAGiQUyGfCQ/1/tl/canva-MAGiQUyGfCQ.png",
       eventName: "Maratona São Paulo 2024",
       soldAt: "2024-01-15T14:30:00",
       price: 25.00,
@@ -294,7 +294,7 @@ function DashboardContent({ selectedEvent }: { selectedEvent: string }) {
     },
     {
       id: 2,
-      photoUrl: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=150&h=100&fit=crop",
+      photoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwr_zZjgvmu4BccwDNIHic8K5dyehw7cSYA&s",
       eventName: "Corrida 5K Parque Ibirapuera",
       soldAt: "2024-01-14T16:45:00",
       price: 20.00,
@@ -303,7 +303,7 @@ function DashboardContent({ selectedEvent }: { selectedEvent: string }) {
     },
     {
       id: 3,
-      photoUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150&h=100&fit=crop",
+      photoUrl: "https://i.pinimg.com/736x/c1/f3/31/c1f3317f44a0d83c43e769892e4d3473.jpg",
       eventName: "Maratona São Paulo 2024",
       soldAt: "2024-01-14T11:20:00",
       price: 25.00,
@@ -312,7 +312,7 @@ function DashboardContent({ selectedEvent }: { selectedEvent: string }) {
     },
     {
       id: 4,
-      photoUrl: "https://images.unsplash.com/photo-1551698618-1cb2f97d256?w=150&h=100&fit=crop",
+      photoUrl: "https://i.pinimg.com/474x/84/ff/5d/84ff5d4969b1b130975ee331269614c6.jpg",
       eventName: "Corrida 5K Parque Ibirapuera",
       soldAt: "2024-01-13T09:15:00",
       price: 20.00,
@@ -321,7 +321,7 @@ function DashboardContent({ selectedEvent }: { selectedEvent: string }) {
     },
     {
       id: 5,
-      photoUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=150&h=100&fit=crop",
+      photoUrl: "https://marketplace.canva.com/GhjAY/MAEa8LGhjAY/1/tl/canva-profile-picture-of-smiling-biracial-female-employee-MAEa8LGhjAY.jpg",
       eventName: "Maratona São Paulo 2024",
       soldAt: "2024-01-12T15:30:00",
       price: 25.00,

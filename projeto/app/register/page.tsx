@@ -81,7 +81,7 @@ export default function RegisterPage() {
       }
 
       const response = await AuthService.register(userData)
-      
+
       // Salvar dados do usuário para uso posterior
       localStorage.setItem('temp_user_id', response.user.id)
       localStorage.setItem('temp_user_data', JSON.stringify(response.user))
@@ -108,20 +108,20 @@ export default function RegisterPage() {
 
   const completeFaceRegistration = async () => {
     if (!facePhoto) return
-    
+
     setIsLoading(true)
     setError("")
-    
+
     try {
       // Pegar o ID do usuário salvo temporariamente
       const userId = localStorage.getItem('temp_user_id')
       if (!userId) {
         throw new Error("Dados do usuário não encontrados")
       }
-      
+
       // Registrar o rosto usando a API Python
       const result = await registerUserFace("", facePhoto)
-      
+
       if (result.success) {
         showToast("Foto registrada com sucesso!", "success")
         // Limpar dados temporários
@@ -280,7 +280,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white pt-16">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
         <div className="flex items-center justify-between px-4 py-3">

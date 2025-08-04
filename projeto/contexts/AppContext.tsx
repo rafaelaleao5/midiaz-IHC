@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
-import { AuthService, User } from "@/lib/auth-service"
+import { AuthService } from "@/lib/auth-service"
 
 interface CartItem {
   id: string
@@ -11,6 +11,14 @@ interface CartItem {
   eventName: string
   price: number
   image: string
+}
+
+interface User {
+  id: string
+  name: string
+  email: string
+  avatar: string
+  type: "consumer" | "photographer" | "admin"
 }
 
 interface Event {
@@ -63,17 +71,17 @@ const AppContext = createContext<AppContextType | undefined>(undefined)
 
 // Expanded real event photos from Unsplash
 const eventPhotos = [
-  "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=200&fit=crop", // Football
+  "https://imagens.ebc.com.br/BmMgwvUS3xdQXpi8AmDYqSMvwXM=/1170x700/smart/https://agenciabrasil.ebc.com.br/sites/default/files/thumbnails/image/2024/06/03/53765510026_f6f4aa2e4f_o.jpg?itok=Y7QzLiNH", // Football
   "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=200&fit=crop", // Basketball
-  "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=200&fit=crop", // Running
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=200&fit=crop", // Graduation
+  "https://str1.lnmimg.com/img/2023/11/11/fe52f5ce46d478b0e9d9d5a337f9ae8a.jpeg", // Running
+  "https://www.lajedo.com.br/wp-content/uploads/2024/02/como-organizar-uma-festa-do-ensino-medio-lajedo-rj.jpg", // Graduation
   "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=200&fit=crop", // Concert
   "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=200&fit=crop", // Wedding
-  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=200&fit=crop", // Conference
-  "https://images.unsplash.com/photo-1566737236500-c8ac43014a8e?w=400&h=200&fit=crop", // Marathon
-  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=200&fit=crop", // Tennis
-  "https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?w=400&h=200&fit=crop", // Swimming
-  "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=200&fit=crop", // Volleyball
+  "https://univassouras.edu.br/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-05-at-17.34.36-768x1024.jpeg", // Conference
+  "https://s2-ge.glbimg.com/-JP3sXeHQkuSN2P_nlcG_M6xTYs=/0x0:3394x2356/924x0/smart/filters:strip_icc()/s.glbimg.com/es/ge/f/original/2019/04/15/2019-04-15t161825z_1964922355_nocid_rtrmadp_3_running-boston-marathon.jpg", // Marathon
+  "https://s1.static.brasilescola.uol.com.br/be/2024/04/jogadoras-tenis.jpg", // Tennis
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTWKDs5rzyKx-iw0dacFQvbltTJ4Bt9g6PQQ&s", // Swimming
+  "https://navegantes.sc.gov.br/wp-content/uploads/2025/01/Circuito-Brasileiro-de-Volei-de-Praia-Credito-da-foto-Mauricio-Val-FV-Imagem-CBV-4.jpg", // Volleyball
   "https://images.unsplash.com/photo-1552667466-07770ae110d0?w=400&h=200&fit=crop", // Soccer
   "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop", // Mountain event
   "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=200&fit=crop", // Beach event
@@ -81,7 +89,7 @@ const eventPhotos = [
   "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=200&fit=crop", // Party
   "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400&h=200&fit=crop", // Corporate
   "https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=400&h=200&fit=crop", // Art exhibition
-  "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=200&fit=crop", // Food festival
+  "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/11/masterchef-2024.png?w=1200&h=900&crop=0", // Food festival
   "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=200&fit=crop", // Fashion show
 ]
 
@@ -282,7 +290,7 @@ const mockEvents: Event[] = [
   {
     id: "15",
     name: "Festival de Inverno",
-    location: "Campos do Jordão - SP",
+    location: "Campos do Jordão - São Paulo",
     date: "12 de Novembro, 2024",
     photographer: "Gabriel Martins Studio",
     totalPhotos: 1600,
@@ -423,26 +431,44 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }
 
   const login = async (email: string, password: string): Promise<boolean> => {
-    try {
-      const response = await AuthService.login(email, password)
-      setUser(response.user)
-      
-      // Redirecionar baseado no tipo de usuário
-      if (response.user.type === "admin") {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    // Mock login logic
+    if (email === "admin@midiaz.com") {
+      setUser({
+        id: "admin-1",
+        name: "Admin Midiaz",
+        email: "admin@midiaz.com",
+        avatar: "/placeholder.svg?height=80&width=80",
+        type: "admin",
+      })
       router.push("/admin/dashboard")
-      } else if (response.user.type === "photographer") {
-      router.push("/photographer/dashboard")
-      } else {
-      router.push("/")
-      }
-      
-      showToast("Login realizado com sucesso", "success")
       return true
-    } catch (error) {
-      showToast(error instanceof Error ? error.message : "Erro no login", "error")
-      return false
+    } else if (email === "fotografo@midiaz.com") {
+      setUser({
+        id: "photographer-1",
+        name: "João Silva",
+        email: "fotografo@midiaz.com",
+        avatar: "/placeholder.svg?height=80&width=80",
+        type: "photographer",
+      })
+      router.push("/photographer/dashboard")
+      return true
+    } else if (email && password) {
+      setUser({
+        id: "user-1",
+        name: "Maria Silva",
+        email: email,
+        avatar: "/placeholder.svg?height=80&width=80",
+        type: "consumer",
+      })
+      router.push("/")
+      return true
     }
+    return false
   }
+
 
   const logout = () => {
     AuthService.logout()

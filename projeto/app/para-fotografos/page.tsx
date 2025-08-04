@@ -86,7 +86,7 @@ export default function ParaFotografosPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-white pb-16 md:pb-0 pt-16">
       <Navigation />
 
       {/* Header */}

@@ -57,7 +57,7 @@ export default function UploadPage() {
 
   const processUpload = async () => {
     if (files.length === 0) return
-    
+
     setIsProcessing(true)
     setUploadProgress(0)
 
@@ -71,13 +71,13 @@ export default function UploadPage() {
       // Process photos with AI
       const eventId = `event_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
       const result = await processEventPhotos(eventId, files)
-      
+
       setUploadProgress(100)
 
       // Calculate statistics from AI results
       const totalFaces = result.results.reduce((sum, photo) => sum + photo.total_faces, 0)
       const totalDetections = result.results.reduce((sum, photo) => sum + photo.detections.length, 0)
-      
+
       setProcessingResults({
         totalPhotos: files.length,
         facesDetected: totalFaces,
@@ -214,7 +214,7 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-16">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="flex items-center justify-between px-4 py-3">
@@ -236,9 +236,9 @@ export default function UploadPage() {
             <CardContent className="space-y-4">
               <div>
                 <Label htmlFor="eventName">Nome do Evento</Label>
-                <Input 
-                  id="eventName" 
-                  placeholder="Ex: Copa Universitária 2024" 
+                <Input
+                  id="eventName"
+                  placeholder="Ex: Copa Universitária 2024"
                   className="mt-1"
                   value={eventInfo.name}
                   onChange={(e) => setEventInfo(prev => ({ ...prev, name: e.target.value }))}
@@ -246,9 +246,9 @@ export default function UploadPage() {
               </div>
               <div>
                 <Label htmlFor="eventLocation">Local</Label>
-                <Input 
-                  id="eventLocation" 
-                  placeholder="Ex: Estádio Municipal" 
+                <Input
+                  id="eventLocation"
+                  placeholder="Ex: Estádio Municipal"
                   className="mt-1"
                   value={eventInfo.location}
                   onChange={(e) => setEventInfo(prev => ({ ...prev, location: e.target.value }))}
@@ -256,9 +256,9 @@ export default function UploadPage() {
               </div>
               <div>
                 <Label htmlFor="eventDate">Data</Label>
-                <Input 
-                  id="eventDate" 
-                  type="date" 
+                <Input
+                  id="eventDate"
+                  type="date"
                   className="mt-1"
                   value={eventInfo.date}
                   onChange={(e) => setEventInfo(prev => ({ ...prev, date: e.target.value }))}
@@ -266,9 +266,9 @@ export default function UploadPage() {
               </div>
               <div>
                 <Label htmlFor="eventDescription">Descrição (opcional)</Label>
-                <Textarea 
-                  id="eventDescription" 
-                  placeholder="Descreva o evento..." 
+                <Textarea
+                  id="eventDescription"
+                  placeholder="Descreva o evento..."
                   className="mt-1"
                   value={eventInfo.description}
                   onChange={(e) => setEventInfo(prev => ({ ...prev, description: e.target.value }))}
@@ -284,9 +284,8 @@ export default function UploadPage() {
             </CardHeader>
             <CardContent>
               <div
-                className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                  dragActive ? "border-purple-600 bg-purple-50" : "border-gray-300 hover:border-purple-400"
-                }`}
+                className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${dragActive ? "border-purple-600 bg-purple-50" : "border-gray-300 hover:border-purple-400"
+                  }`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}
@@ -397,11 +396,11 @@ export default function UploadPage() {
           )}
 
           {/* Upload Button */}
-                          <Button
-                  className="w-full py-3 bg-purple-600 hover:bg-purple-700 font-semibold"
-                  onClick={processUpload}
-                  disabled={files.length === 0 || isProcessing}
-                >
+          <Button
+            className="w-full py-3 bg-purple-600 hover:bg-purple-700 font-semibold"
+            onClick={processUpload}
+            disabled={files.length === 0 || isProcessing}
+          >
             {isProcessing ? "Processando..." : `Fazer Upload de ${files.length} Foto${files.length !== 1 ? "s" : ""}`}
           </Button>
         </div>

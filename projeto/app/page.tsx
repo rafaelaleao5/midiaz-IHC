@@ -104,8 +104,8 @@ function CarouselSection({ title, items, onItemClick, onViewAll, showViewAll = t
                               <Calendar className="w-3 h-3 mr-1 flex-shrink-0" />
                               <span>{item.date}</span>
                             </div>
-                            <Button 
-                              size="sm" 
+                            <Button
+                              size="sm"
                               className="bg-purple-600 hover:bg-purple-700 text-xs px-3 py-1 h-7"
                               onClick={(e) => {
                                 e.stopPropagation()
@@ -154,9 +154,8 @@ function CarouselSection({ title, items, onItemClick, onViewAll, showViewAll = t
               <button
                 key={index}
                 onClick={() => handleSlideClick(index)}
-                className={`w-2 h-2 rounded-full transition-colors ${
-                  index === currentSlide ? 'bg-purple-600' : 'bg-gray-300'
-                }`}
+                className={`w-2 h-2 rounded-full transition-colors ${index === currentSlide ? 'bg-purple-600' : 'bg-gray-300'
+                  }`}
               />
             ))}
           </div>
@@ -182,7 +181,7 @@ export default function HomePage() {
 
   // Dados mockados para as diferentes sessões
   const featuredEvents = events.slice(0, 8) // Eventos em Destaque
-  
+
   // Eventos próximos ao usuário (mock baseado em localização)
   const nearbyEvents = [
     {
@@ -191,31 +190,31 @@ export default function HomePage() {
       location: "São Paulo, SP",
       date: "15 de Janeiro, 2025",
       totalPhotos: 2500,
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
+      image: "https://www.yescom.com.br/gerenciador/uploads/noticia_184661419.jpg"
     },
     {
-      id: "nearby-2", 
+      id: "nearby-2",
       name: "Campeonato Paulista de Futebol",
       location: "São Paulo, SP",
       date: "12 de Janeiro, 2025",
       totalPhotos: 1800,
-      image: "https://images.unsplash.com/photo-1552667466-07770ae110d0?w=400&h=300&fit=crop"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSN2pzCptR0asMi00bm7y9psfJkqpY_CBNVw&s"
     },
     {
       id: "nearby-3",
       name: "Festival de Música Indie",
-      location: "São Paulo, SP", 
+      location: "São Paulo, SP",
       date: "10 de Janeiro, 2025",
       totalPhotos: 1200,
-      image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop"
+      image: "https://sebrae.com.br/Sebrae/Portal%20Sebrae/UFs/PE/Imagens/sebraepe_sebraepe_image_4.jpeg"
     },
     {
       id: "nearby-4",
       name: "Corrida Noturna 10K",
       location: "São Paulo, SP",
-      date: "8 de Janeiro, 2025", 
+      date: "8 de Janeiro, 2025",
       totalPhotos: 900,
-      image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=400&h=300&fit=crop"
+      image: "https://s3.sa-east-1.amazonaws.com/static.activodeporte.com/brasil/uploads/2024/05/06121758/%40bruno.barrosh-43-1-690x515.jpg"
     },
     {
       id: "nearby-5",
@@ -231,7 +230,7 @@ export default function HomePage() {
       location: "São Paulo, SP",
       date: "3 de Janeiro, 2025",
       totalPhotos: 800,
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
+      image: "https://blog.lptennis.com/content/images/2016/11/novak-djokovic.jpg"
     },
     {
       id: "nearby-7",
@@ -247,7 +246,7 @@ export default function HomePage() {
       location: "São Paulo, SP",
       date: "30 de Dezembro, 2024",
       totalPhotos: 750,
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop"
+      image: "https://www.estadao.com.br/resizer/v2/L6HDJTYTEJHB5FD5TROB3BLZ4Y.jpg?quality=80&auth=4d260b39db5ca1df99f03af2486787c73fb2b3fba48fd7475320f519925d82bc&width=1075&height=527&focal=1833,1779"
     }
   ]
 
@@ -320,9 +319,9 @@ export default function HomePage() {
   ] : []
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 pb-16 md:pb-0">
+    <div className="min-h-screen w-full bg-gray-50 pb-16 md:pb-0 pt-16">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative h-[500px] flex items-center justify-center overflow-hidden w-full px-4 md:px-8 bg-gradient-to-r from-purple-600 to-purple-800">
         {/* User Profile Picture */}
@@ -330,7 +329,7 @@ export default function HomePage() {
           <div className="absolute top-4 left-4 z-20">
             <div className="relative w-12 h-12 rounded-full overflow-hidden bg-purple-600 flex items-center justify-center">
               <User className="w-6 h-6 text-white" />
-              </div>
+            </div>
           </div>
         )}
 
@@ -348,7 +347,7 @@ export default function HomePage() {
               </div>
               <Input
                 placeholder="Pesquise suas fotos..."
-                 className="w-full pl-12 pr-4 py-4 text-lg border-0 bg-white/20 backdrop-blur-md rounded-xl shadow-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder:text-white/70 text-white"
+                className="w-full pl-12 pr-4 py-4 text-lg border-0 bg-white/20 backdrop-blur-md rounded-xl shadow-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder:text-white/70 text-white"
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
                     handleSearch((e.target as HTMLInputElement).value)
@@ -363,7 +362,7 @@ export default function HomePage() {
       {/* Content Sections */}
       <div className="px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-7xl mx-auto">
-          
+
           {/* 1. Eventos em Destaque */}
           <CarouselSection
             title="Eventos em Destaque"
@@ -395,7 +394,7 @@ export default function HomePage() {
           )}
 
         </div>
-                    </div>
+      </div>
 
       {/* Stats Section */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 lg:py-16 bg-white">

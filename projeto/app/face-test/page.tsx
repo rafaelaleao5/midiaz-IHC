@@ -86,7 +86,7 @@ export default function FaceTestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-white pb-16 md:pb-0 pt-16">
       <Navigation />
 
       {/* Header */}
@@ -115,10 +115,10 @@ export default function FaceTestPage() {
           {/* Tabs */}
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-2">
-                              <TabsTrigger value="compare" className="flex items-center space-x-2">
-                  <GitCompare size={16} />
-                  <span>Comparar Rostos</span>
-                </TabsTrigger>
+              <TabsTrigger value="compare" className="flex items-center space-x-2">
+                <GitCompare size={16} />
+                <span>Comparar Rostos</span>
+              </TabsTrigger>
               <TabsTrigger value="detect" className="flex items-center space-x-2">
                 <Search size={16} />
                 <span>Detectar Rostos</span>
@@ -405,7 +405,7 @@ export default function FaceTestPage() {
                               </p>
                             </div>
                           </div>
-                          
+
                           {results.data.matches.length > 0 && (
                             <div className="space-y-2">
                               <p className="text-sm font-medium text-gray-700">Localizações encontradas:</p>

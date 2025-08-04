@@ -143,10 +143,45 @@ export const useFaceRecognition = () => {
     return await FaceRecognitionService.getSystemStats();
   };
 
+  // Funções adicionais para compatibilidade
+  const detectFaceInImage = async (referenceImage: File, targetImage: File): Promise<any> => {
+    await simulateApiDelay();
+    simulateRandomError();
+
+    return {
+      success: true,
+      message: 'Rosto detectado com sucesso',
+      confidence: Math.random() * 0.3 + 0.7, // 70-100% de confiança
+      face_count: Math.floor(Math.random() * 3) + 1
+    };
+  };
+
+  const compareTwoFaces = async (face1: File, face2: File): Promise<any> => {
+    await simulateApiDelay();
+    simulateRandomError();
+
+    const isMatch = Math.random() > 0.3; // 70% de chance de ser a mesma pessoa
+
+    return {
+      success: true,
+      message: isMatch ? 'Rostos correspondem' : 'Rostos não correspondem',
+      is_match: isMatch,
+      confidence: Math.random() * 0.3 + 0.7
+    };
+  };
+
+  const checkApiHealth = async (): Promise<boolean> => {
+    await simulateApiDelay();
+    return true; // API sempre saudável no mock
+  };
+
   return {
     registerUserFace,
     uploadUserPhoto,
     getUserPhotos,
     getSystemStats,
+    detectFaceInImage,
+    compareTwoFaces,
+    checkApiHealth,
   };
 }; 

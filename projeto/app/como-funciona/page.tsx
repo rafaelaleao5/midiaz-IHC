@@ -71,7 +71,7 @@ export default function ComoFuncionaPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-white pb-16 md:pb-0">
+    <div className="min-h-screen bg-white pb-16 md:pb-0 pt-16">
       <Navigation />
 
       {/* Header */}
